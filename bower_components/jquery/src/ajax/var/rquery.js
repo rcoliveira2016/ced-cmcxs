@@ -1,0 +1,3 @@
+efine(function() {
+	return (/\?/);
+});

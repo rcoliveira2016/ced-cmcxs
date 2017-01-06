@@ -194,7 +194,7 @@ class Banco {
 
     public function getCategoriaId($id) {
         $sql="select * from cadas_categoria where id_categoria='$id'";
-        $rs = mysql_query($sql) or die();
+        $rs = mysql_query($sql);
         $registro = mysql_fetch_array($rs);
         if (mysql_num_rows($rs)==1) {
           $id = $registro[0];
@@ -284,15 +284,16 @@ class Banco {
 
   public function getRecursoId($id){
     $sql = "SELECT * FROM cadas_recurso where id_recurso=$id";
-    $rs = mysql_query($sql) or die();
     $a=null;
-    while ($registro = mysql_fetch_array($rs)) {
-      $id = $registro[0];
-      $nome = $registro[1];
-      $desc = $registro[2];
-      $icone = $registro[4];
-      $situacao = $registro[3];
-      return new Recurso($id, $nome, $desc, $icone, $situacao);
+    if($rs = mysql_query($sql)){
+      while ($registro = mysql_fetch_array($rs)) {
+        $id = $registro[0];
+        $nome = $registro[1];
+        $desc = $registro[2];
+        $icone = $registro[4];
+        $situacao = $registro[3];
+        return new Recurso($id, $nome, $desc, $icone, $situacao);
+      }
     }
   }
 
@@ -374,19 +375,20 @@ class Banco {
 
   public function getSolicitantesId($id){
     $sql="SELECT * FROM cadas_solicitante WHERE id_solicitante=$id";
-    $rs= mysql_query($sql);
-    while ($registro = mysql_fetch_array($rs)) {
-        $id = $registro[0];
-        $nome = $registro[1];
-        $mail = $registro[2];
-        $cpf = $registro[3];
-        $cnpj = $registro[4];
-        $situacao = $registro[5];
-        $telefone = $registro[6];
-        $contato = $registro[7];
-        $descricao = $registro[8];
-        $endereco = $registro[9];
-        return new Solicitantes($id, $nome, $mail, $cpf, $cnpj, $situacao, $telefone, $contato, $descricao, $endereco);
+    if($rs= mysql_query($sql)){
+      while ($registro = mysql_fetch_array($rs)) {
+          $id = $registro[0];
+          $nome = $registro[1];
+          $mail = $registro[2];
+          $cpf = $registro[3];
+          $cnpj = $registro[4];
+          $situacao = $registro[5];
+          $telefone = $registro[6];
+          $contato = $registro[7];
+          $descricao = $registro[8];
+          $endereco = $registro[9];
+          return new Solicitantes($id, $nome, $mail, $cpf, $cnpj, $situacao, $telefone, $contato, $descricao, $endereco);
+      }
     }
     return null;
   }
@@ -461,19 +463,20 @@ class Banco {
 
   public function getSolicitacoesId($id){
     $sql="SELECT *, DATE_FORMAT(data,'%d/%m/%Y')  from solicitacoes where id=$id and mostrar=0";
-    $rs=mysql_query($sql);
-    while ($registro = mysql_fetch_array($rs)) {
-        $id = $registro[0];
-        $espaco = $registro[1];
-        $solicitante = $registro[2];
-        $assunto = $registro[3];
-        $categoria = $registro[4];
-        $data = $registro[12];
-        $h_inicial = $registro[6];
-        $h_final = $registro[7];
-        $desc = $registro[8];
-        $user = $registro[9];
-        return new Solicitacoes($id, $user, $espaco, $categoria, $solicitante, $data, $h_inicial, $h_final, $assunto, $desc, $registro[10]);
+    if($rs=mysql_query($sql)){
+      while ($registro = mysql_fetch_array($rs)) {
+          $id = $registro[0];
+          $espaco = $registro[1];
+          $solicitante = $registro[2];
+          $assunto = $registro[3];
+          $categoria = $registro[4];
+          $data = $registro[12];
+          $h_inicial = $registro[6];
+          $h_final = $registro[7];
+          $desc = $registro[8];
+          $user = $registro[9];
+          return new Solicitacoes($id, $user, $espaco, $categoria, $solicitante, $data, $h_inicial, $h_final, $assunto, $desc, $registro[10]);
+      }
     }
   }
 

@@ -707,21 +707,22 @@ class Banco {
 
   public function getRelCatSocData($id, $data, $s){
     $where=($s)? "and site_camara=0":"";
-    $sql="SELECT *,DATE_FORMAT(data, '%d/%m/%Y') as dataF FROM `solicitacoes`,cadas_categoria WHERE mostrar=0 and cadas_categoria.id_categoria=solicitacoes.id_categoria and cadas_categoria.id_categoria=$id and mostar=0 and DATE_FORMAT(data, '%d/%m/%Y')='$data' $where ";
-    $rs=mysql_query($sql);
+    $sql="SELECT *,DATE_FORMAT(data, '%d/%m/%Y') as dataF FROM `solicitacoes`,cadas_categoria WHERE mostrar=0 and cadas_categoria.id_categoria=solicitacoes.id_categoria and cadas_categoria.id_categoria=$id and DATE_FORMAT(data, '%d/%m/%Y')='$data' $where ";
     $a=array();
-    while ($registro = mysql_fetch_array($rs)) {
-        $id = $registro[0];
-        $espaco = $registro[1];
-        $solicitante = $registro[2];
-        $assunto = $registro[3];
-        $categoria = $registro[4];
-        $data = $registro["dataF"];
-        $h_inicial = $registro[6];
-        $h_final = $registro[7];
-        $desc = $registro[8];
-        $user = $registro[9];
-        $a[]= new Solicitacoes($id, $user, $espaco, $categoria, $solicitante, $data, $h_inicial, $h_final, $assunto, $desc, $registro[10]);
+    if($rs=mysql_query($sql)){
+      while ($registro = mysql_fetch_array($rs)) {
+          $id = $registro[0];
+          $espaco = $registro[1];
+          $solicitante = $registro[2];
+          $assunto = $registro[3];
+          $categoria = $registro[4];
+          $data = $registro["dataF"];
+          $h_inicial = $registro[6];
+          $h_final = $registro[7];
+          $desc = $registro[8];
+          $user = $registro[9];
+          $a[]= new Solicitacoes($id, $user, $espaco, $categoria, $solicitante, $data, $h_inicial, $h_final, $assunto, $desc, $registro[10]);
+      }
     }
     return $a;
   }

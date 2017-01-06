@@ -16,7 +16,8 @@
     $id=$_GET['id'];
     $u=$b->getSolicitacoesId($_GET['id']);
     if (empty($u)) {
-      die(echo "Solicitação não encontrada");
+      echo "<h1 class='page-header'>Solicitação não encontrado <i class='fa fa-frown-o' aria-hidden='true'></i></h1></div><script src=\"./js/bootstrap.min.js\"></script><script src=\"./js/metisMenu.min.js\"></script><script src=\"./js/sb-admin-2.js\"></script><script src=\"./js/show_img.js\"></script></body></html>";
+      die();
     }
     if(isset($_GET['excluir'])){
       if ($_GET['excluir']==$_GET['id'] and $b->ocultar_solicitacao($_GET['excluir'])) {

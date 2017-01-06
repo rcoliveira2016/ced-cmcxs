@@ -12,6 +12,7 @@
     $b=new Banco();
     $u=$b->getCategoriaId($id);
     if (empty($u)) {
+      echo "<h1 class='page-header'>Categoria não encontrado <i class='fa fa-frown-o' aria-hidden='true'></i></h1></div><script src=\"./js/bootstrap.min.js\"></script><script src=\"./js/metisMenu.min.js\"></script><script src=\"./js/sb-admin-2.js\"></script><script src=\"./js/show_img.js\"></script></body></html>";
       die();
     }
   }
@@ -27,7 +28,7 @@
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Formulario para cadastro de categoria                 
+                Formulario para cadastro de categoria
             </div>
             <div class="panel-body">
                 <div class="row">

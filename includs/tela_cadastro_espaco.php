@@ -11,6 +11,7 @@
     $b=new Banco();
     $u=$b->getEspacoId($id);
     if (empty($u)) {
+      echo "<h1 class='page-header'>Espaço não encontrado <i class='fa fa-frown-o' aria-hidden='true'></i></h1></div><script src=\"./js/bootstrap.min.js\"></script><script src=\"./js/metisMenu.min.js\"></script><script src=\"./js/sb-admin-2.js\"></script><script src=\"./js/show_img.js\"></script></body></html>";
       die();
     }
   }

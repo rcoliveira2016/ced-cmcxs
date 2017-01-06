@@ -1,0 +1,208 @@
+.list-group-item strong{
+  color:#337ab7;
+  font: 20px;
+}
+
+ div hr{
+  margin: 0px;
+  border:1px solid #8F8F98;
+}
+
+.select_agenda::after{
+    content: "";
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 12px solid #d9534f;
+    border-left: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-right: 12px solid transparent;
+    position: absolute;
+    bottom: -23px;
+}
+
+.select_agenda{
+  color:red;
+  background:#d9534f!important;
+}
+.contr-agenda{
+  width: 2%!important;
+  text-align: right;
+}
+.div{
+  width: 30px;
+  background: #f00;
+  position: fixed;
+  top:0;
+  left:0;
+  z-index: 9997;
+}
+.off-margin-left, .off_margin{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+.off-paddin{
+  padding: 0 !important;
+}
+.page-header{
+  border-bottom: 2px solid #e9e9e9 !important;
+}
+#tabela:hover{
+  text-decoration: none !important;
+}
+#tabela{
+  color:#000 !important;
+  margin-bottom: 1px!important;
+}
+/*#tabela td a{
+  color:#000 !important;
+}
+#tabela td a:hover{
+  text-decoration: none !important;
+}*/
+.editar_table{
+  text-align: center;
+}
+
+.on-margin-left{
+  padding-left: 12px !important;
+  padding-right: 12px !important;
+}
+.textarea{
+  resize:vertical;
+}
+#icone{
+  width: 20%;
+}
+
+td img, p img{
+  max-width:70px !important;
+  position: relative;
+  margin: auto;
+  border: 0.25px solid #CCC;
+}
+
+
+/*calendario*/
+
+.info p img{
+  max-width: 65px;
+}
+
+td h4{
+  margin-top: 0;
+  color: #ccc;
+}
+
+#contener-panel .panel-body{
+  padding: 0!important;
+  min-width:554px!important;
+}
+
+td div{
+  width: 100%;
+  display: block;
+  height: 25px;
+  position: relative;
+  float: left;
+  text-align: center;
+}
+
+.div-conteiner{
+  height: 50px;
+  display: block;
+  position: relative;
+  float: left;
+  border-bottom: 0.25px #ccc dotted;
+}
+
+/*td div:nth-child(2){
+  border-bottom: none;
+}*/
+
+.cab-calender td{
+  border:none !important;
+  border-bottom: #ccc 1px solid !important;
+  background: #337ab7;
+  color: #fff;
+  margin: 5px;
+
+}
+
+.day-calender, .day-calender-h{
+  width: 13.14% ;
+  padding: 3px;
+  font-size:20px;
+}
+.day-calender-h{
+  width: 8% !important;
+  background: #eee;
+  color: #337ab7;
+}
+.table-calender td , .table-calender tr, .table-calender th{
+  border:1px solid #ccc;
+  border-collapse: collapse;
+}
+.info{
+  display: none;
+  z-index:9999!important;
+  position: fixed;
+  top: 4px;
+  right: 4px;
+  width: 25%;
+  min-width: 370px;
+}
+
+.link-td{
+  color:#fff;
+  font-size: 30px;
+}
+
+.link-td:hover{
+  text-decoration: none;
+  color: #fff;
+}
+
+.exit{
+  position: relative;
+  float:right;
+  margin-top: -6px;
+}
+.link-off-f:hover{
+  color: #354250!important;
+}
+.link-off-f{
+  color: #fff!important;
+}
+.link-off{
+  color: #000!important;
+}
+.link-off-hover:hove{
+  text-decoration: none;
+}
+
+.conteiner-pesquisa{
+  padding: 0!important;
+}
+
+.padding-size{
+  padding-left:5px!important;
+  padding-right:5px!important
+}
+
+/*blockquote:after {
+    content: " ”";
+    font-size: 40px;
+    color: #999;
+    line-height: 0;
+    display: inline-block;
+    margin: 0 0 0 4px;
+}*/
+
+#wrapper{
+  min-width: 1093px;
+}
+
+blockquote{
+  margin: 0;
+}

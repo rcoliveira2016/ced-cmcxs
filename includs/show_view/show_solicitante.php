@@ -7,9 +7,9 @@
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-default">
+        <div class="panel panel-red">
             <div class="panel-heading">
-              Consulta de Solicitante - <a <?php echo "href='./index.php?pag=10&id=$u->id'"?>>Editar Solicitante</a>
+              Consulta de Solicitante - <a style="color:#FFD700" <?php echo "href='./index.php?pag=10&id=$u->id'"?>>Editar Solicitante</a>
             </div>
             <div class="panel-body">
               <input type="hidden" name="id" value=<?php echo ((isset($id) and !empty($id)) ? "\"$id\"" : ""); ?>>

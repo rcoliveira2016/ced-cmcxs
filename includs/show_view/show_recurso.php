@@ -7,9 +7,9 @@
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-              Consulta de Recursos - <a <?php echo "href='./index.php?pag=8&id=$u->id'"?>>Editar Recursos</a>
+        <div class="panel panel-red">
+            <div class="panel-heading ">
+              Consulta de Recursos - <a style="color:#FFD700" <?php echo "href='./index.php?pag=8&id=$u->id'"?>>Editar Recursos</a>
             </div>
             <div class="panel-body">
                 <div class="row">

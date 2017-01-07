@@ -13,9 +13,9 @@ $usu=$b->getUserId($u->user)->nome;
 <!-- /.row -->
 <div class="row">
     <div class="col-lg-12">
-        <div class="panel panel-default">
+        <div class="panel panel-red">
             <div class="panel-heading">
-              Consulta de Solicitações - <a <?php echo "href='./index.php?pag=11&id=$u->id'"?>>Editar Solicitações</a>
+              Consulta de Solicitações - <a style="color:#FFD700" <?php echo "href='./index.php?pag=11&id=$u->id'"?>>Editar Solicitações</a>
             </div>
             <div class="panel-body">
                 <div class="row">

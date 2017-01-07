@@ -1,7 +1,7 @@
 <?php
     if (!empty($_POST) and isset($_POST['user']) and isset($_POST['senha']) and isset($_POST['submit'])) {
       include_once './Usuario.php';
-      //include_once './config_ad.php';
+      include_once './config_ad.php';
       include_once './Banco.php';
       $user=$_POST['user'];
       $senha=$_POST['senha'];

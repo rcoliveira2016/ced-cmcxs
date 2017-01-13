@@ -1,7 +1,7 @@
 <?php
 class Banco {
     function __construct() {
-        @mysql_connect('localhost', 'root','root') or die(mysql_error());
+        @mysql_connect('localhost', 'root','') or die(mysql_error());
         mysql_select_db('calendario') or die(mysql_error());
     }
 
@@ -244,16 +244,17 @@ class Banco {
 // RECURSOS
 //
   public function getArrayRecurso($sql){
-    $rs = mysql_query($sql) or die();
     $a=null;
-    while ($registro = mysql_fetch_array($rs)) {
-      $id = $registro[0];
-      $nome = $registro[1];
-      $desc = $registro[2];
-      $icone = $registro[4];
-      $situacao = $registro[3];
-      $c= new Recurso($id, $nome, $desc, $icone, $situacao);
-      $a[]=$c;
+    if($rs = mysql_query($sql)){
+      while ($registro = mysql_fetch_array($rs)) {
+        $id = $registro[0];
+        $nome = $registro[1];
+        $desc = $registro[2];
+        $icone = $registro[4];
+        $situacao = $registro[3];
+        $c= new Recurso($id, $nome, $desc, $icone, $situacao);
+        $a[]=$c;
+      }
     }
     return $a;
   }
@@ -341,21 +342,22 @@ class Banco {
   }
 
   public function getArraySoli($sql){
-    $rs= mysql_query($sql);
     $a=null;
-    while ($registro = mysql_fetch_array($rs)) {
-        $id = $registro[0];
-        $nome = $registro[1];
-        $mail = $registro[2];
-        $cpf = $registro[3];
-        $cnpj = $registro[4];
-        $situacao = $registro[5];
-        $telefone = $registro[6];
-        $contato = $registro[7];
-        $descricao = $registro[8];
-        $endereco = $registro[9];
-        $c= new Solicitantes($id, $nome, $mail, $cpf, $cnpj, $situacao, $telefone, $contato, $descricao, $endereco);
-        $a[]=$c;
+    if($rs= mysql_query($sql)){
+      while ($registro = mysql_fetch_array($rs)) {
+          $id = $registro[0];
+          $nome = $registro[1];
+          $mail = $registro[2];
+          $cpf = $registro[3];
+          $cnpj = $registro[4];
+          $situacao = $registro[5];
+          $telefone = $registro[6];
+          $contato = $registro[7];
+          $descricao = $registro[8];
+          $endereco = $registro[9];
+          $c= new Solicitantes($id, $nome, $mail, $cpf, $cnpj, $situacao, $telefone, $contato, $descricao, $endereco);
+          $a[]=$c;
+      }
     }
     return $a;
   }
@@ -515,16 +517,17 @@ class Banco {
   }
   public function get_rel_solicitacoes($id){
     $sql="SELECT cadas_recurso.* FROM rel_rec_soli , cadas_recurso WHERE id_solicitacao=$id and rel_rec_soli.id_recurso=cadas_recurso.id_recurso GROUP BY cadas_recurso.Nome ";
-    $rs = mysql_query($sql) or die(mysql_error());
     $a=null;
-    while ($registro = mysql_fetch_array($rs)) {
-      $id = $registro[0];
-      $nome = $registro[1];
-      $desc = $registro[2];
-      $icone = $registro[4];
-      $situacao = $registro[3];
-      $c= new Recurso($id, $nome, $desc, $icone, $situacao);
-      $a[]=$c;
+    if($rs = mysql_query($sql)){
+      while ($registro = mysql_fetch_array($rs)) {
+        $id = $registro[0];
+        $nome = $registro[1];
+        $desc = $registro[2];
+        $icone = $registro[4];
+        $situacao = $registro[3];
+        $c= new Recurso($id, $nome, $desc, $icone, $situacao);
+        $a[]=$c;
+      }
     }
     return $a;
   }
@@ -532,16 +535,17 @@ class Banco {
   public function get_recurso_espaco($id){
     $sql="SELECT cadas_recurso.* FROM rel_rec_esp,cadas_recurso
     where rel_rec_esp.id_espaco=$id and rel_rec_esp.id_recurso=cadas_recurso.id_recurso";
-    $rs = mysql_query($sql) or die(mysql_error());
     $a=array();
-    while ($registro = mysql_fetch_array($rs)) {
-      $id = $registro[0];
-      $nome = $registro[1];
-      $desc = $registro[2];
-      $icone = $registro[4];
-      $situacao = $registro[3];
-      $c= new Recurso($id, $nome, $desc, $icone, $situacao);
-      $a[]=$c;
+    if($rs = mysql_query($sql)){
+      while ($registro = mysql_fetch_array($rs)) {
+        $id = $registro[0];
+        $nome = $registro[1];
+        $desc = $registro[2];
+        $icone = $registro[4];
+        $situacao = $registro[3];
+        $c= new Recurso($id, $nome, $desc, $icone, $situacao);
+        $a[]=$c;
+      }
     }
     return $a;
   }
@@ -565,76 +569,81 @@ class Banco {
   public function buscar($query){
     $soc=array();
     $sql="SELECT solicitacoes.*,DATE_FORMAT(data,'%d/%m/%Y') FROM `solicitacoes`, cadas_espaco, cadas_solicitante, cadas_categoria WHERE mostrar=0 and solicitacoes.id_espaco=cadas_espaco.id_espaco and solicitacoes.id_solicitante=cadas_solicitante.id_solicitante and solicitacoes.id_categoria=cadas_categoria.id_categoria and (cadas_categoria.Nome LIKE '%$query%' OR cadas_espaco.Nome LIKE '%$query%' OR cadas_solicitante.Nome LIKE '%$query%' or DATE_FORMAT(data,'%d/%m/%Y') LIKE '%$query%' ) ";
-    $rs=mysql_query($sql);
-    while ($registro = mysql_fetch_array($rs)) {
-        $id = $registro[0];
-        $espaco = $registro[1];
-        $solicitante = $registro[2];
-        $assunto = $registro[3];
-        $categoria = $registro[4];
-        $data = $registro[12];
-        $h_inicial = $registro[6];
-        $h_final = $registro[7];
-        $desc = $registro[8];
-        $user = $registro[9];
-        $soc[]= new Solicitacoes($id, $user, $espaco, $categoria, $solicitante, $data, $h_inicial, $h_final, $assunto, $desc, $registro[10]);
+    if ($rs=mysql_query($sql)) {
+      while ($registro = mysql_fetch_array($rs)) {
+          $id = $registro[0];
+          $espaco = $registro[1];
+          $solicitante = $registro[2];
+          $assunto = $registro[3];
+          $categoria = $registro[4];
+          $data = $registro[12];
+          $h_inicial = $registro[6];
+          $h_final = $registro[7];
+          $desc = $registro[8];
+          $user = $registro[9];
+          $soc[]= new Solicitacoes($id, $user, $espaco, $categoria, $solicitante, $data, $h_inicial, $h_final, $assunto, $desc, $registro[10]);
+      }
     }
     $a=array();
     $sql="SELECT * FROM `cadas_categoria` WHERE Nome LIKE '%$query%'";
-    $rs = mysql_query($sql) or die(mysql_error());
     $cat=array();
-    while ($registro = mysql_fetch_array($rs)) {
-        $id = $registro[0];
-        $nome = $registro[1];
-        $espaco = $registro[3];
-        $situacao = $registro[2];
-        $validar = $registro[4];
-        $c= new Categoria($id, $nome, $espaco, $situacao, $validar);
-        $cat[]=$c;
+    if ($rs = mysql_query($sql)) {
+      while ($registro = mysql_fetch_array($rs)) {
+          $id = $registro[0];
+          $nome = $registro[1];
+          $espaco = $registro[3];
+          $situacao = $registro[2];
+          $validar = $registro[4];
+          $c= new Categoria($id, $nome, $espaco, $situacao, $validar);
+          $cat[]=$c;
+      }
     }
     $sql="SELECT * FROM `cadas_espaco` WHERE `Nome` LIKE '%$query%'";
     $esp=$this->getArrayEsp($sql);
     $sql="SELECT * FROM `cadas_recurso` WHERE `Nome` LIKE '%$query%'";
-    $rs = mysql_query($sql);
     $rec=array();
-    while ($registro = mysql_fetch_array($rs)) {
-      $id = $registro[0];
-      $nome = $registro[1];
-      $desc = $registro[2];
-      $icone = $registro[4];
-      $situacao = $registro[3];
-      $c= new Recurso($id, $nome, $desc, $icone, $situacao);
-      $rec[]=$c;
+    if($rs = mysql_query($sql)){
+      while ($registro = mysql_fetch_array($rs)) {
+        $id = $registro[0];
+        $nome = $registro[1];
+        $desc = $registro[2];
+        $icone = $registro[4];
+        $situacao = $registro[3];
+        $c= new Recurso($id, $nome, $desc, $icone, $situacao);
+        $rec[]=$c;
+      }
     }
     $sql="SELECT * FROM `cadas_solicitante` WHERE Nome LIKE '%$query%' or Telefone LIKE '%$query%' or Nome_Contato LIKE '%$query%' or Endereco LIKE '%$query%' or CPF LIKE '%$query%' or CNPJ LIKE '%$query%'";
-    $rs= mysql_query($sql);
     $sol=array();
-    while ($registro = mysql_fetch_array($rs)) {
-        $id = $registro[0];
-        $nome = $registro[1];
-        $mail = $registro[2];
-        $cpf = $registro[3];
-        $cnpj = $registro[4];
-        $situacao = $registro[5];
-        $telefone = $registro[6];
-        $contato = $registro[7];
-        $descricao = $registro[8];
-        $endereco = $registro[9];
-        $c= new Solicitantes($id, $nome, $mail, $cpf, $cnpj, $situacao, $telefone, $contato, $descricao, $endereco);
-        $sol[]=$c;
+    if ($rs= mysql_query($sql)) {
+      while ($registro = mysql_fetch_array($rs)) {
+          $id = $registro[0];
+          $nome = $registro[1];
+          $mail = $registro[2];
+          $cpf = $registro[3];
+          $cnpj = $registro[4];
+          $situacao = $registro[5];
+          $telefone = $registro[6];
+          $contato = $registro[7];
+          $descricao = $registro[8];
+          $endereco = $registro[9];
+          $c= new Solicitantes($id, $nome, $mail, $cpf, $cnpj, $situacao, $telefone, $contato, $descricao, $endereco);
+          $sol[]=$c;
+      }
     }
     $sql="SELECT * FROM `cadas_usu` WHERE Nome LIKE '%$query%' or login LIKE '%$query%'";
-    $rs = mysql_query($sql);
     $usu=array();
-    while ($registro = mysql_fetch_array($rs)) {
-        $id = $registro[0];
-        $nome = $registro[1];
-        $senha = $registro[2];
-        $n_cartao = $registro[3];
-        $mail = $registro[4];
-        $perfil = $registro[5];
-        $c= new Usuario($id, $nome, $senha, $n_cartao, $mail, $perfil);
-        $usu[]=$c;
+    if($rs = mysql_query($sql)){
+      while ($registro = mysql_fetch_array($rs)) {
+          $id = $registro[0];
+          $nome = $registro[1];
+          $senha = $registro[2];
+          $n_cartao = $registro[3];
+          $mail = $registro[4];
+          $perfil = $registro[5];
+          $c= new Usuario($id, $nome, $senha, $n_cartao, $mail, $perfil);
+          $usu[]=$c;
+      }
     }
     $a['categoria']=$cat;$a['espaco']=$esp;$a['recurso']=$rec;$a['usuario']=$usu;$a['solicitante']=$sol;$a['solicitacoes']=$soc;
     return $a;
@@ -642,37 +651,39 @@ class Banco {
   // Relatorios
   public function get_ranking(){
     $sql="SELECT cadas_solicitante.*,COUNT(solicitacoes.id) as cont FROM `solicitacoes`, cadas_solicitante WHERE mostrar=0 and cadas_solicitante.id_solicitante=solicitacoes.id_solicitante GROUP BY cadas_solicitante.Nome ORDER by cont DESC";
-    $rs= mysql_query($sql);
     $a=null;
-    while ($registro = mysql_fetch_array($rs)) {
-        $id = $registro[0];
-        $nome = $registro[1];
-        $mail = $registro[2];
-        $cpf = $registro[3];
-        $cnpj = $registro[4];
-        $situacao = $registro[5];
-        $telefone = $registro[6];
-        $contato = $registro[7];
-        $descricao = $registro[8];
-        $endereco = $registro[9];
-        $c= new Solicitantes($id, $nome, $mail, $cpf, $cnpj, $situacao, $telefone, $contato, $descricao, $endereco);
-        $a[]['esp']=array($c, $registro[10]);
+    if($rs= mysql_query($sql)){
+      while ($registro = mysql_fetch_array($rs)) {
+          $id = $registro[0];
+          $nome = $registro[1];
+          $mail = $registro[2];
+          $cpf = $registro[3];
+          $cnpj = $registro[4];
+          $situacao = $registro[5];
+          $telefone = $registro[6];
+          $contato = $registro[7];
+          $descricao = $registro[8];
+          $endereco = $registro[9];
+          $c= new Solicitantes($id, $nome, $mail, $cpf, $cnpj, $situacao, $telefone, $contato, $descricao, $endereco);
+          $a[]['esp']=array($c, $registro[10]);
+      }
     }
     return $a;
   }
 
   public function get_ranking_esp(){
     $sql="SELECT cadas_espaco.*,COUNT(solicitacoes.id) as cont FROM `solicitacoes`, cadas_espaco WHERE mostrar=0 and cadas_espaco.id_espaco=solicitacoes.id_espaco GROUP BY cadas_espaco.Nome ORDER by cont DESC";
-    $rs = mysql_query($sql) or die(mysql_error());
     $a=null;
-    while ($registro = mysql_fetch_array($rs)) {
-        $id = $registro[0];
-        $nome = $registro[1];
-        $senha = $registro[2];
-        $n_cartao = $registro[3];
-        $mail = $registro[4];
-        $c= new Espaco($id, $nome, $senha, $n_cartao, $mail);
-        $a[]['esp']=array($c, $registro[5]);
+    if ($rs = mysql_query($sql)) {
+      while ($registro = mysql_fetch_array($rs)) {
+          $id = $registro[0];
+          $nome = $registro[1];
+          $senha = $registro[2];
+          $n_cartao = $registro[3];
+          $mail = $registro[4];
+          $c= new Espaco($id, $nome, $senha, $n_cartao, $mail);
+          $a[]['esp']=array($c, $registro[5]);
+      }
     }
     return $a;
   }
@@ -694,20 +705,21 @@ class Banco {
   }
 
   public function getArraySoc($sql){
-    $rs=mysql_query($sql);
     $a=array();
-    while ($registro = mysql_fetch_array($rs)) {
-        $id = $registro[0];
-        $espaco = $registro[1];
-        $solicitante = $registro[2];
-        $assunto = $registro[3];
-        $categoria = $registro[4];
-        $data = $registro[12];
-        $h_inicial = $registro[6];
-        $h_final = $registro[7];
-        $desc = $registro[8];
-        $user = $registro[9];
-        $a[]= new Solicitacoes($id, $user, $espaco, $categoria, $solicitante, $data, $h_inicial, $h_final, $assunto, $desc, $registro[10]);
+    if ($rs=mysql_query($sql)) {
+      while ($registro = mysql_fetch_array($rs)) {
+          $id = $registro[0];
+          $espaco = $registro[1];
+          $solicitante = $registro[2];
+          $assunto = $registro[3];
+          $categoria = $registro[4];
+          $data = $registro[12];
+          $h_inicial = $registro[6];
+          $h_final = $registro[7];
+          $desc = $registro[8];
+          $user = $registro[9];
+          $a[]= new Solicitacoes($id, $user, $espaco, $categoria, $solicitante, $data, $h_inicial, $h_final, $assunto, $desc, $registro[10]);
+      }
     }
     return $a;
   }

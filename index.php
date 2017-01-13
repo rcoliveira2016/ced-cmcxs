@@ -76,6 +76,7 @@ if (!empty($_GET) ) {
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['nome'];?></a>
                         </li>
                         <li class="divider"></li>
+                        <li><a href="index.php?pag=11"><i class="fa fa-plus fa-fw"></i> Nova solicitação</a>
                         <li><a href="login.php"><i class="fa-sign-out fa-fw"></i> Logout</a>
                         </li>
 

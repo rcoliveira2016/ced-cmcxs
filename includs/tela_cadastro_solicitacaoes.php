@@ -103,7 +103,7 @@
                                           if (!empty($s)) {
                                             foreach ($s as $user) {
                                               $sec=(isset($u) and $user->id==$u->categoria)? " selected" : "";
-                                              echo "<option value='$user->id'$sec>".$user->nome."</option>";
+                                              echo "<option value='$user->id'$sec data='$user->espaco'>".$user->nome."</option>";
                                             }
                                           }
                                       ?>
@@ -149,7 +149,7 @@
                             <div class="col-lg-3 off-margin-left">
                               <label>Interno:</label>
                             </div>
-                            <div class="col-lg-3 off-margin-left">
+                            <div class="col-lg-5 off-margin-left">
                                 <label class="checkbox-inline off-margin-lef">
                                   <input id="optionsRadiosInline1" name="interno" value="1" type="checkbox" <?php echo ((isset($u) and !empty($u) and $u->interno==1)? "checked": ""); ?>>(Não mostrar esta solicitação no site da câmara)
                                 </label>
@@ -255,6 +255,11 @@
 </div>
 <script src="./js/jquery-ui.js"></script>
 <script>
+
+$("[name=categoria]").change(function() {
+  $('[name=espaco]').val($( "[name=categoria] option:selected" ).attr('data'));
+});
+
 $("[name=espaco]").change(function () {
   var id=$("[name=espaco]").val();
   ajax={

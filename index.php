@@ -88,16 +88,18 @@ if (!empty($_GET) ) {
                 </li>
             </ul>
             <!-- END User-logoff -->
-            <ul class="nav navbar-top-links navbar-right" id="alerta" >
-                <li class="dropdown" style="margin:0">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-bell alert-icon" aria-hidden="true"></i>  <i class="alert-icon fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <?php include_once './php/alertar_cedencias.php'; ?>
-                    </ul>
-                </li>
-            </ul>
+            <?php if($nivel==1 or $nivel==2){ ?>
+              <ul class="nav navbar-top-links navbar-right" id="alerta" >
+                  <li class="dropdown" style="margin:0">
+                      <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                          <i class="fa fa-bell alert-icon" aria-hidden="true"></i>  <i class="alert-icon fa fa-caret-down"></i>
+                      </a>
+                      <ul class="dropdown-menu dropdown-user">
+                          <?php include_once './php/alertar_cedencias.php'; ?>
+                      </ul>
+                  </li>
+              </ul>
+            <?php } ?>
             <div class="navbar-default sidebar" role="navigation">
                 <?php
 

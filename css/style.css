@@ -206,3 +206,11 @@ td div{
 blockquote{
   margin: 0;
 }
+
+.alert-container{
+  border-bottom: 1px solid #dddddd;
+  border-top: 1px solid #dddddd;
+}
+.alert-container:nth-child(2n+1) {
+  border:none;
+}

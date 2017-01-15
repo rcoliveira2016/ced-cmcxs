@@ -14,7 +14,6 @@ if (!empty($_SESSION)) {
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Login - Cêdencias</title>
     <link href="./css/bootstrap.min.css" rel="stylesheet">
-    <link href="./css/metisMenu.min.css" rel="stylesheet">
     <link href="./css/sb-admin-2.css" rel="stylesheet">
 
 </head>
@@ -62,7 +61,6 @@ if (!empty($_SESSION)) {
         </div>
     </div>
     <script src="./js/jquery.min.js"></script>
-    <script src="./js/validar.js"></script>
 </body>
 
 </html>

@@ -13,6 +13,7 @@
           //$bind=@ldap_bind($ds, $user. '@' . $domain, $senha);
           if (true) {
               session_start();
+              $_SESSION['alert']=true;
               $_SESSION['nivel']=$usuario->perfil;
               $_SESSION["id"]=$usuario->id;
               $_SESSION['nome']=$usuario->nome;

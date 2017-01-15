@@ -64,34 +64,40 @@ if (!empty($_GET) ) {
                 <a class="navbar-brand" href="index.php">Cedências - Câmara Caxias</a>
             </div>
             <!-- /.navbar-header -->
-
+            <!-- User-logoff -->
             <ul class="nav navbar-top-links navbar-right">
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
+                      <?php if ($nivel!=0) { ?>
+                          <li><a href="#"><i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['nome'];?></a>
+                          </li>
+                          <li class="divider"></li>
+                          <li><a href="index.php?pag=11"><i class="fa fa-plus"></i> Nova solicitação</a>
+                          <li><a href="login.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
+                          </li>
 
-              <?php if ($nivel!=0) { ?>
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> <?php echo $_SESSION['nome'];?></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li><a href="index.php?pag=11"><i class="fa fa-plus"></i> Nova solicitação</a>
-                        <li><a href="login.php"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a>
-                        </li>
-
-              <?php
-                    }else{
-                      echo '<li><a href="login.php"><i class="fa fa-gear fa-fw"></i> Fazer Login</a>';
-                    }
-               ?>
+                      <?php
+                          }else{
+                            echo '<li><a href="login.php"><i class="fa fa-gear fa-fw"></i> Fazer Login</a>';
+                          }
+                       ?>
                     </ul>
-                    <!-- /.dropdown-user -->
                 </li>
-                <!-- /.dropdown -->
             </ul>
-            <!-- /.navbar-top-links -->
-
+            <!-- END User-logoff -->
+            <ul class="nav navbar-top-links navbar-right" id="alerta" >
+                <li class="dropdown" style="margin:0">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell alert-icon" aria-hidden="true"></i>  <i class="alert-icon fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <?php include_once './php/alertar_cedencias.php'; ?>
+                    </ul>
+                </li>
+            </ul>
             <div class="navbar-default sidebar" role="navigation">
                 <?php
 
@@ -117,13 +123,8 @@ if (!empty($_GET) ) {
                             </li>
                         </ul>
                     </div>
-                  <?php }
-
-
-                ?>
-                <!-- /.sidebar-collapse -->
+                  <?php } ?>
             </div>
-            <!-- /.navbar-static-side -->
         </nav>
         <div id="page-wrapper">
             <?php
@@ -141,13 +142,14 @@ if (!empty($_GET) ) {
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
-
     </div>
     <!-- /#wrapper -->
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/metisMenu.min.js"></script>
     <script src="./js/sb-admin-2.js"></script>
-    <script src="./js/show_img.js"></script>
+    <?php if($js){ ?>
+    <script src="./js/script.js"></script>
+    <?php } ?>
     <?php if($id_pagina==11 or $id_pagina==10){ ?>
     <script src="./js/mask.js"></script>
     <?php } ?>

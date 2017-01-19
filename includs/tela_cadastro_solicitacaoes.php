@@ -365,7 +365,12 @@ function erros(){
   if (!empty($_GET['status'])) {
     if ($_GET['status']=="s") {
       echo "<div class=\"alert alert-success\">
-              Cadastro foi Concluído
+              <strong><i class='fa fa-exclamation-circle fa-4' aria-hidden='true'></i></strong> Cadastro foi Concluído
+            </div>";
+    }
+    elseif ($_GET['status']=="a") {
+      echo "<div class=\"alert alert-success\">
+            <strong><i class='fa fa-exclamation-circle fa-4' aria-hidden='true'></i></strong> Alteração concluída com sucesso
             </div>";
     }
     elseif ($_GET['status']=="advalidar") {

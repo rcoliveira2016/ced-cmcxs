@@ -62,7 +62,7 @@ function alteraEspaco(){
   $b=new Banco();
   if(true) {
     if ($b->alteraEspaco($nome, $_POST['desc'], $cor, $_POST['situacao'], $u, $_POST['id'])) {
-      header("Location: ../index.php?pag=4&id={$_POST['id']}&status=s");
+      header("Location: ../index.php?pag=4&id={$_POST['id']}&status=a");
       return true;
     }else {
         header("Location: ../index.php?pag=4&id={$_POST['id']}&status=erro&banco");
@@ -76,7 +76,7 @@ function cadastraAlterar(){
   include_once './Banco.php';
   $b=new Banco();
     if ($b->alterarUsuario( $_POST['id'], $_POST['perfil'], $_POST['situacao'])) {
-      header("Location: ../index.php?pag=2&id={$_POST['id']}&status=s");
+      header("Location: ../index.php?pag=2&id={$_POST['id']}&status=a");
       return true;
     }else {
       header("Location: ../index.php?pag=2&id={$_POST['id']}&status=erro");
@@ -91,7 +91,7 @@ function alterarCategoria(){
   $va=((isset($_POST['validar']) and $_POST['validar']==1) ? 1 : 0);
   $b=new Banco();
     if ($b->alteraCategoria($nome, $_POST['espaco'], $_POST['situacao'], $va, $u, $id)) {
-      header("Location: ../index.php?pag=6&id=$id&status=s");
+      header("Location: ../index.php?pag=6&id=$id&status=a");
       return true;
     }else {
         header("Location: ../index.php?pag=6&id=$id&status=erro");
@@ -104,7 +104,7 @@ function alterarSolicitantes(){
   $b=new Banco();
   var_dump($_POST);
   if ($b->alterarSolicitantes($_POST['nome'], $_POST['mail'], $_POST['desc'], $_POST['CNPJ'],  $_POST['CPF'], $_POST['telefone'], $_POST['situacao'],  $_POST['p_contato'], $_POST['endereco'] , $_POST['id'])) {
-    header("Location: ../index.php?pag=10&status=s&id={$_POST['id']}");
+    header("Location: ../index.php?pag=10&status=a&id={$_POST['id']}");
   } else {
     header("Location: ../index.php?pag=10&status=erro&id={$_POST['id']}");
   }
@@ -129,7 +129,7 @@ function alterarSolicitacoaes(){
   if(validarHora()){
     if ($b->validarHoraBancoAlterar($_POST['h_final'] ,$_POST['h_inicial'], $_POST['espaco'], $_POST['data'], $_POST['id_s'])) {
       if ($b->alterarSolicitacoes($_POST)) {
-        header("Location: ../index.php?pag=11&status=s&id={$_POST['id_s']}");
+        header("Location: ../index.php?pag=11&status=a&id={$_POST['id_s']}");
       }
     }
     else {

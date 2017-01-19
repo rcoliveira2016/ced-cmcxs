@@ -7,7 +7,7 @@ if (isset($_POST['nome']) and !empty($_POST['nome']) and
   include_once './Banco.php';
   $b=new Banco();
   if ($b->alterarRecurso($_POST['id'], $_POST['nome'], $_POST['desc'], $_POST['situacao'], $_POST['users'], $_POST['espaco'],  moverArquivo())) {
-    header("Location: ../index.php?pag=8&id={$_POST['id']}&status=s");
+    header("Location: ../index.php?pag=8&id={$_POST['id']}&status=a");
   }
   else {
     header("Location: ../index.php?pag=8&id={$_POST['id']}&status=erro");

@@ -10,17 +10,18 @@ class Banco {
     }
     public function get_users(){
         $sql = "select * from cadas_usu";
-        $rs = mysql_query($sql) or die();
         $a=null;
-        while ($registro = mysql_fetch_array($rs)) {
-            $id = $registro[0];
-            $nome = $registro[1];
-            $senha = $registro[2];
-            $n_cartao = $registro[3];
-            $mail = $registro[4];
-            $perfil = $registro[5];
-            $c= new Usuario($id, $nome, $senha, $n_cartao, $mail, $perfil);
-            $a[]=$c;
+        if($rs = mysql_query($sql)){
+          while ($registro = mysql_fetch_array($rs)) {
+              $id = $registro[0];
+              $nome = $registro[1];
+              $senha = $registro[2];
+              $n_cartao = $registro[3];
+              $mail = $registro[4];
+              $perfil = $registro[5];
+              $c= new Usuario($id, $nome, $senha, $n_cartao, $mail, $perfil);
+              $a[]=$c;
+          }
         }
         return $a;
     }
@@ -131,7 +132,20 @@ class Banco {
     }
     public function get_rel_espaco($id){
         $sql = "SELECT cadas_usu.* FROM `cadas_espaco`, cadas_usu, rel_esp_user WHERE cadas_usu.id_usuario=rel_esp_user.id_user and rel_esp_user.id_espaco=$id GROUP BY cadas_usu.Nome";
-
+        $a=null;
+        if($rs = mysql_query($sql)){
+          while ($registro = mysql_fetch_array($rs)) {
+              $id = $registro[0];
+              $nome = $registro[1];
+              $senha = $registro[2];
+              $n_cartao = $registro[3];
+              $mail = $registro[4];
+              $perfil = $registro[5];
+              $c= new Usuario($id, $nome, $senha, $n_cartao, $mail, $perfil);
+              $a[]=$c;
+          }
+        }
+        return $a;
     }
 
     public function alteraEspaco($nome, $desc, $cor, $situacao, $u, $id){

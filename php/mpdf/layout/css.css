@@ -1,0 +1,54 @@
+*{
+}
+.main{
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  background:#ccc;
+  font-family: "Times New Roman", sans-serif;
+  font-size: 13pt;
+}
+.conteiner > div{
+  width: 80%;
+  margin: auto;
+}
+.conteiner{
+  background: #fff;
+  width: 210mm;
+  height: 297mm;
+}
+.conteiner div img{
+  width: 100%;
+  height: auto;
+}
+.topo{
+  margin: auto;
+  width:80%;
+  margin-top:0!important;
+}
+.roda{
+  margin-top:80px!important;
+}
+.titulo{
+  margin-top: 60px!important;
+  text-align: center;
+}
+.form{
+  margin-top: 50px!important;
+}
+.row{
+  width: 100%;
+  margin-bottom: 15px;
+  height: auto;
+}
+.w50{
+  width: 50%;
+  float: left;
+}
+.termo{
+  margin-top: 30px!important;
+}
+.center{
+  text-align: center;
+}

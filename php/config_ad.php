@@ -9,11 +9,11 @@
 <?php
 ini_set('error_reporting', E_ALL);
 ini_set('display_errors', 1);
-$ldapconfig['host'] = "172.28.0.1";
-$ldapconfig['port'] = "389"; #PORTA
+$ldapconfig['host'] = "###.###.###.###";
+$ldapconfig['port'] = "##"; #PORTA
 $domain = "cmcxs";
-$username = "ponto_ad";
-$password = "souomaior!";
+$username = "##";
+$password = "##!";
 $grupo = 'OU=Camara,DC=cmcxs,DC=gov,DC=br';
 //$filtro '(|(samaccountname='.$usuario.'))'
 $filtro = "(&(objectClass=User)(cn=*)(!(userAccountControl:1.2.840.113556.1.4.803:=2)))";

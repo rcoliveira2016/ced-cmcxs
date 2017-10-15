@@ -487,3 +487,14 @@ ALTER TABLE `solicitacoes`
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+--- CONSULTAS LOCAS
+/*
+SELECT * FROM `cadas_recurso` 
+	WHERE 
+    cadas_recurso.id_recurso NOT IN
+(SELECT recurso.id_recurso FROM solicitacoes, cadas_recurso as recurso, rel_rec_soli As solicitacoes_recurso
+	 	WHERE 
+    	solicitacoes_recurso.id_solicitacao = solicitacoes.id AND solicitacoes_recurso.id_recurso = recurso.id_recurso AND
+    	solicitacoes.id = 22)
+*/
